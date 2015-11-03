@@ -7,7 +7,6 @@ import ctypes
 
 dll=ctypes.cdll.wiiuse
 
-<<<<<<< HEAD
 class Wiimote:
  roll =0.0
  pitch=0.0
@@ -18,7 +17,6 @@ class Wiimote:
 =======
 class Wiimote(object):
  def handle_event(wm):
->>>>>>> 6edba70f49e931c3041e900bdc068e584e054cbb
   btn=wiiuse.pressed_button(wm)
   if btn != [] : print "Push ",btn
   if "Home" in btn : return False
