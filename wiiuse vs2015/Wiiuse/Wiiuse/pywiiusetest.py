@@ -8,6 +8,8 @@ import ctypes
 dll=ctypes.cdll.wiiuse
 
 class Wiimote(object):
+ def __init__(self, *args, **kwargs):
+     return super(Wiimote, self).__init__(*args, **kwargs)
  def handle_event(wm):
   btn=wiiuse.pressed_button(wm)
   if btn != [] : print "Push ",btn
