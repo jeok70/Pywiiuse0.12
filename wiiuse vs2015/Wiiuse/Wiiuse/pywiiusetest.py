@@ -6,14 +6,22 @@ import os
 import ctypes
 
 dll=ctypes.cdll.wiiuse
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5bae2cefdf117727b5920de815113b52e1e6739b
 class Wiimote:
  roll =0.0
  pitch=0.0
  x=0.0
  y=0.0
  z=0.0
+<<<<<<< HEAD
 
 
+=======
+ def handle_event(self,wm):
+>>>>>>> 5bae2cefdf117727b5920de815113b52e1e6739b
 class Wiimote(object):
  def handle_event(wm):
   btn=wiiuse.pressed_button(wm)
