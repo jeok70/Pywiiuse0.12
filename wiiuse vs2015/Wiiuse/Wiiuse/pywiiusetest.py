@@ -14,7 +14,6 @@ class Wiimote:
  y=0.0
  z=0.0
  def handle_event(self,wm):
-=======
 class Wiimote(object):
  def handle_event(wm):
   btn=wiiuse.pressed_button(wm)
