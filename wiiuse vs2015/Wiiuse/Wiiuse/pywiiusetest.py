@@ -7,7 +7,8 @@ import ctypes
 
 dll=ctypes.cdll.wiiuse
 
-def handle_event(wm):
+class Wiimote(object):
+ def handle_event(wm):
   btn=wiiuse.pressed_button(wm)
   if btn != [] : print "Push ",btn
   if "Home" in btn : return False
@@ -23,7 +24,7 @@ def handle_event(wm):
       wiiuse.wiimote_set_ir(wm,0)
   return True 
 
-def check_event(wms, id):
+ def check_event(wms, id):
   global dll
   if dll.wiiuse_poll(wms, wiiuse.MAX_WIIMOTES) :
     evt = wms[id][0].event
@@ -31,7 +32,7 @@ def check_event(wms, id):
       return handle_event(wms[id])
   return True
 
-def main():
+ def main():
   id = 0
   wms = wiiuse.init_wiimote()
   while check_event(wms, id):
