@@ -7,10 +7,13 @@ import ctypes
 
 dll=ctypes.cdll.wiiuse
 
-class Wiimote(object):
- def __init__(self, *args, **kwargs):
-     return super(Wiimote, self).__init__(*args, **kwargs)
- def handle_event(wm):
+class Wiimote:
+ roll =0.0
+ pitch=0.0
+ x=0.0
+ y=0.0
+ z=0.0
+ def handle_event(self,wm):
   btn=wiiuse.pressed_button(wm)
   if btn != [] : print "Push ",btn
   if "Home" in btn : return False
@@ -26,20 +29,19 @@ class Wiimote(object):
       wiiuse.wiimote_set_ir(wm,0)
   return True 
 
- def check_event(wms, id):
+ def check_event(self,wms, id):
   global dll
   if dll.wiiuse_poll(wms, wiiuse.MAX_WIIMOTES) :
     evt = wms[id][0].event
     if evt == wiiuse.WIIUSE_EVENT:
-      return handle_event(wms[id])
+      return self.handle_event(wms[id])
   return True
 
- def main():
+ def main(self):
   id = 0
   wms = wiiuse.init_wiimote()
-  while check_event(wms, id):
+  while self.check_event(wms, id):
      if wiiuse.using_acc(wms[id]):
-      
       print 'roll = %f pitch = %f yaw = %f' % (wms[id][0].orient.roll,wms[id][0].orient.pitch,wms[id][0].orient.yaw)
       print 'x= %f y = %f  z = %f' % (wms[id][0].gforce.x,wms[id][0].gforce.y,wms[id][0].gforce.z)
      if wms[id][0].exp.type == wiiuse.EXP_NUNCHUK:
